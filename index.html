@@ -219,11 +219,8 @@
         });
       }
       document.querySelector('#settings').classList.add('hide');
-      if (window.ads) {
-        window.ads.beginRound(() => window.roulette.start());
-      } else {
         window.roulette.start();
-      }
+
     });
 
     document.querySelector('#chkAutoRecording').addEventListener('change', (e) => {
@@ -248,13 +245,12 @@
     document.querySelector('#in_rangeStart').addEventListener('change', () => selectWinnerType('multi', 'start'));
     document.querySelector('#in_rangeEnd').addEventListener('change', () => selectWinnerType('multi', 'end'));
 
-    window.roulette.addEventListener('goal', () => {
-      ready = false;
-      if (window.ads) window.ads.showResult();
-      setTimeout(() => {
-        document.querySelector('#settings').classList.remove('hide');
-      }, 3000);
-    });
+window.roulette.addEventListener('goal', () => {
+  ready = false;
+  setTimeout(() => {
+    document.querySelector('#settings').classList.remove('hide');
+  }, 3000);
+});
 
     window.roulette.addEventListener('message', (e) => {
       simpleToast(e.detail);
